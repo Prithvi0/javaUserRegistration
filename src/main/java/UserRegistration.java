@@ -2,9 +2,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-    public static boolean validateFirstName(String FirstName){
-        Pattern firstNamePattern = Pattern.compile("^[A-Z]{1}[a-z]{2,}");   // PATTERN FOR FIRST LETTER IN CAPITAL AND MINIMUM OF 3 CHARACTERS LENGTH
+    //    VALIDATING FIRST NAME
+    public static boolean validateFirstName(String FirstName) {
+        Pattern firstNamePattern = Pattern.compile("^[A-Z]{1}[a-z]{2,}");   // PATTERN FOR FIRST NAME, FIRST LETTER IN CAPITAL AND MINIMUM OF 3 CHARACTERS LENGTH
         Matcher firstNameMatcher = firstNamePattern.matcher(FirstName);
         return firstNameMatcher.matches();
+    }
+    //    VALIDATING LAST NAME
+    public static boolean validateLastName(String LastName) {
+        Pattern lastNamePattern = Pattern.compile("^[A-Z]{1}[a-z]{2,}");    // PATTERN FOR LAST NAME, FIRST LETTER IN CAPITAL AND MINIMUM OF 3 CHARACTERS LENGTH
+        Matcher lastNameMatcher = lastNamePattern.matcher(LastName);
+        return lastNameMatcher.matches();
     }
 }
