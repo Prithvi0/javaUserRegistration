@@ -31,4 +31,10 @@ public class UserRegistration {
         Matcher mobileNumberMatcher = mobileNumberPattern.matcher(mobileNumber);
         return mobileNumberMatcher.matches();
     }
+    //  METHOD FOR VALIDATING PASSWORD
+    public static boolean validatePassword(String password) {
+        Pattern passwordPatternLength = Pattern.compile("^.{8,}$");   //  PATTERN FOR MINIMUM OF 8 CHARACTER PASSWORD
+        Matcher passwordPatternMatcher = passwordPatternLength.matcher(password);
+        return passwordPatternMatcher.matches();
+    }
 }

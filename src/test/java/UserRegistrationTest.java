@@ -153,4 +153,22 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validateMobileNumber("9876543210");
         Assert.assertTrue(result);
     }
+    // TEST CASES FOR VALIDATING THE PRE-DEFINED PASSWORD RULE1 - MINIMUM 8 CHARACTERS
+    @Test
+    public void givenPassword_WhenEmpty_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePassword("");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenPassword_WhenLessThan8Characters_ShouldReturnFalse() {
+        boolean result= userRegistration.validatePassword("AsdfAsd");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenPassword_WhenCorrect_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePassword("asdf@sdf");
+        Assert.assertTrue(result);
+    }
 }
