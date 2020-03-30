@@ -48,6 +48,12 @@ public class UserRegistration {
         Matcher passwordOfAtLeast1NumericMatcher = passwordOfAtLeast1Numeric.matcher(password);
         return passwordOfAtLeast1NumericMatcher.matches();
     }
+    public static boolean validatePasswordOfExact1SpecialCharacterInPassword(String password) {
+        // PATTERN FOR EXACTLY 1 SPECIAL CHARACTER IN PASSWORD
+        Pattern passwordOfExact1SpecialCharacter = Pattern.compile("^[^$&+,:;=?`~\"@#|'<>.^*()%!_-]*[$&+,:;=?`~\"@#|'<>.^*()%!_-][^$&+,:;=?`~\"@#|'<>.^*()%!_-]*$");
+        Matcher passwordOfExact1SpecialCharacterMatcher = passwordOfExact1SpecialCharacter.matcher(password);
+        return passwordOfExact1SpecialCharacterMatcher.matches();
+    }
 
     //  METHOD FOR VALIDATING ALL PASSWORD TEST CASES
     public static boolean passwordValidation(String password) {
@@ -56,12 +62,15 @@ public class UserRegistration {
             boolean passwordOfMinimum1UpperCase = validatePasswordOfAtLeast1UpperCase(password);
             if (passwordOfMinimum1UpperCase) {
                 boolean passwordOfMinimumOf1Numeric = validatePasswordOfAtLeast1NumericInPassword(password);
-                return passwordOfMinimumOf1Numeric;
+                if (passwordOfMinimumOf1Numeric) {
+                    return validatePasswordOfExact1SpecialCharacterInPassword(password);
+                }
             }
             else
                 return false;
         }
         else
             return false;
+        return true;
     }
 }

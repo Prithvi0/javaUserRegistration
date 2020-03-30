@@ -195,4 +195,22 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validatePasswordOfAtLeast1NumericInPassword("asdfAsdf");
         Assert.assertFalse(result);
     }
+    //  TEST CASES FOR VALIDATING THE PRE-DEFINED PASSWORD RULE - EXACT 1 SPECIAL CHARACTER IN PASSWORD
+    @Test
+    public void givenPassword_WhenExact1SpecialCharacter_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePasswordOfExact1SpecialCharacterInPassword("asdf@sdf");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhenNoSpecialCharacter_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePasswordOfExact1SpecialCharacterInPassword("asdfasdf");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenPassword_WhenMoreThan1SpecialCharacter_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePasswordOfExact1SpecialCharacterInPassword("asdf@S&f");
+        Assert.assertFalse(result);
+    }
 }
