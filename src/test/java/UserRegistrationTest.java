@@ -183,4 +183,16 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validatePasswordOfAtLeast1UpperCase("a1dfasdf");
         Assert.assertFalse(result);
     }
+    //  TEST CASES FOR VALIDATING THE PRE-DEFINED PASSWORD RULE3 - AT LEAST 1 NUMERIC IN PASSWORD
+    @Test
+    public void givenPassword_WhenAtLeast1Numeric_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePasswordOfAtLeast1NumericInPassword("asdf1asd");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhenNoNumeric_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePasswordOfAtLeast1NumericInPassword("asdfAsdf");
+        Assert.assertFalse(result);
+    }
 }

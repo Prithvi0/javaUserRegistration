@@ -43,13 +43,23 @@ public class UserRegistration {
         Matcher passwordOfAtLeast1UpperCaseMatcher = passwordOfAtLeast1UpperCase.matcher(password);
         return passwordOfAtLeast1UpperCaseMatcher.matches();
     }
+    public static boolean validatePasswordOfAtLeast1NumericInPassword(String password) {
+        Pattern passwordOfAtLeast1Numeric = Pattern.compile(".*[0-9]+.*");  // PATTERN FOR AT LEAST 1 NUMERIC IN PASSWORD
+        Matcher passwordOfAtLeast1NumericMatcher = passwordOfAtLeast1Numeric.matcher(password);
+        return passwordOfAtLeast1NumericMatcher.matches();
+    }
 
     //  METHOD FOR VALIDATING ALL PASSWORD TEST CASES
     public static boolean passwordValidation(String password) {
         boolean passwordLength = validatePasswordLength(password);
         if (passwordLength) {
             boolean passwordOfMinimum1UpperCase = validatePasswordOfAtLeast1UpperCase(password);
-            return passwordOfMinimum1UpperCase;
+            if (passwordOfMinimum1UpperCase) {
+                boolean passwordOfMinimumOf1Numeric = validatePasswordOfAtLeast1NumericInPassword(password);
+                return passwordOfMinimumOf1Numeric;
+            }
+            else
+                return false;
         }
         else
             return false;
