@@ -156,19 +156,31 @@ public class UserRegistrationTest {
     // TEST CASES FOR VALIDATING THE PRE-DEFINED PASSWORD RULE1 - MINIMUM 8 CHARACTERS
     @Test
     public void givenPassword_WhenEmpty_ShouldReturnFalse() {
-        boolean result = userRegistration.validatePassword("");
+        boolean result = userRegistration.validatePasswordLength("");
         Assert.assertFalse(result);
     }
 
     @Test
     public void givenPassword_WhenLessThan8Characters_ShouldReturnFalse() {
-        boolean result= userRegistration.validatePassword("AsdfAsd");
+        boolean result= userRegistration.validatePasswordLength("AsdfAsd");
         Assert.assertFalse(result);
     }
 
     @Test
     public void givenPassword_WhenCorrect_ShouldReturnTrue() {
-        boolean result = userRegistration.validatePassword("asdf@sdf");
+        boolean result = userRegistration.validatePasswordLength("asdf@sdf");
         Assert.assertTrue(result);
+    }
+    // TEST CASES FOR VALIDATING THE PRE-DEFINED PASSWORD RULE2 - AT LEAST 1 UPPERCASE IN PASSWORD
+    @Test
+    public void givenPassword_WhenAtLeast1UpperCase_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePasswordOfAtLeast1UpperCase("as1fAsdf");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhenNoUpperCase_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePasswordOfAtLeast1UpperCase("a1dfasdf");
+        Assert.assertFalse(result);
     }
 }

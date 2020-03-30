@@ -31,10 +31,27 @@ public class UserRegistration {
         Matcher mobileNumberMatcher = mobileNumberPattern.matcher(mobileNumber);
         return mobileNumberMatcher.matches();
     }
+
     //  METHOD FOR VALIDATING PASSWORD
-    public static boolean validatePassword(String password) {
+    public static boolean validatePasswordLength(String password) {
         Pattern passwordPatternLength = Pattern.compile("^.{8,}$");   //  PATTERN FOR MINIMUM OF 8 CHARACTER PASSWORD
         Matcher passwordPatternMatcher = passwordPatternLength.matcher(password);
         return passwordPatternMatcher.matches();
+    }
+    public static boolean validatePasswordOfAtLeast1UpperCase(String password) {
+        Pattern passwordOfAtLeast1UpperCase = Pattern.compile(".*[A-Z]+.*");    // PATTERN FOR AT LEAST 1 UPPERCASE IN PASSWORD
+        Matcher passwordOfAtLeast1UpperCaseMatcher = passwordOfAtLeast1UpperCase.matcher(password);
+        return passwordOfAtLeast1UpperCaseMatcher.matches();
+    }
+
+    //  METHOD FOR VALIDATING ALL PASSWORD TEST CASES
+    public static boolean passwordValidation(String password) {
+        boolean passwordLength = validatePasswordLength(password);
+        if (passwordLength) {
+            boolean passwordOfMinimum1UpperCase = validatePasswordOfAtLeast1UpperCase(password);
+            return passwordOfMinimum1UpperCase;
+        }
+        else
+            return false;
     }
 }
