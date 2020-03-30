@@ -111,4 +111,46 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validateEmail("A@go.co");
         Assert.assertTrue(result);
     }
+    // TEST CASES FOR VALIDATING THE MOBILE NUMBER
+    @Test
+    public void givenMobileNumber_WhenCorrect_ShouldReturnTrue() {
+        boolean result = userRegistration.validateMobileNumber("+919874561230");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenStartsWithCountryCodeFollowedBy10DigitCorrectMobileNumberWithNoSpaces_ShouldReturnFalse() {
+        boolean result = userRegistration.validateMobileNumber("91987653210");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenStartsWithPlusFollowedByCountryCodeAndSpaceWith10DigitCorrectMobileNumber_ShouldReturnTrue() {
+        boolean result = userRegistration.validateMobileNumber("+91 9876543210");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenStartsWithCountyCodeAndSpaceWith10DigitCorrectMobileNumber_ShouldReturnFalse() {
+        boolean result = userRegistration.validateMobileNumber("91 9876543210");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenStartsWithZeroFollowedBy10DigitCorrectMobileNumber_ShouldReturnTrue() {
+        boolean result = userRegistration.validateMobileNumber("09876543210");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenStartsWithZeroWithSpaceFollowedBy10DigitCorrectMobileNumber_ShouldReturnFalse() {
+        boolean result = userRegistration.validateMobileNumber("0 9876543210");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenContains10DigitCorrectMobileNumber_ShouldReturnTrue() {
+        boolean result = userRegistration.validateMobileNumber("9876543210");
+        Assert.assertTrue(result);
+    }
 }
