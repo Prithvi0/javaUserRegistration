@@ -75,4 +75,40 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validateLastName("Pr@");
         Assert.assertFalse(result);
     }
+    // TEST CASES FOR VALIDATING THE E-MAILS
+    @Test
+    public void givenEmail_WhenCorrect_ShouldReturnTrue() {
+        boolean result = userRegistration.validateEmail("abc.xyz@bl.co.in");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenEmail_WhenNoDomain_ShouldReturnFalse() {
+        boolean result = userRegistration.validateEmail("abc@.com");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenEmail_WhenNoDomainExtension_ShouldReturnFalse() {
+        boolean result = userRegistration.validateEmail("abc@gmail");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenEmail_WhenIncludesAtLeast1LetterAndHasDomain_ShouldReturnTrue() {
+        boolean result = userRegistration.validateEmail("a@go.in");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenEmail_WhenIncludesSpecialSymbol_ShouldReturnTrue() {
+        boolean result = userRegistration.validateEmail("a-@go.com");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenEmail_WhenIncludesUpperCase_ShouldReturnTrue() {
+        boolean result = userRegistration.validateEmail("A@go.co");
+        Assert.assertTrue(result);
+    }
 }
