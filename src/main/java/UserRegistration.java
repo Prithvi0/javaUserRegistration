@@ -19,7 +19,7 @@ public class UserRegistration {
     //  METHOD FOR VALIDATING E-MAIL
     public static boolean validateEmail(String email) {
         //  PATTERN FOR A VALID E-MAIL, MUST CONTAIN AT LEAST A LETTER FOLLOWED BY '@' SYMBOL AND A DOMAIN AND REMAINING ARE OPTIONAL
-        Pattern emailPattern = Pattern.compile("^[a-zA-Z]+[+-_.]?[a-zA-Z0-9]*\\@[a-z]{2,}\\.([a-z]{2,4}\\.)?[a-z]{2,4}$");
+        Pattern emailPattern = Pattern.compile("^[a-zA-Z]+([+-_.][a-zA-Z0-9])*[0-9]*\\@[a-z0-9]+[.]([a-z]{2,4}[.])?[a-z]{2,4}$");
         Matcher emailMatcher = emailPattern.matcher(email);
         return emailMatcher.matches();
     }
@@ -57,19 +57,8 @@ public class UserRegistration {
     //  METHOD FOR VALIDATING ALL PASSWORD TEST CASES
     public static boolean passwordValidation(String password) {
         boolean passwordLength = validatePasswordLength(password);
-        if (passwordLength) {
-            boolean passwordOfMinimum1UpperCase = validatePasswordOfAtLeast1UpperCase(password);
-            if (passwordOfMinimum1UpperCase) {
-                boolean passwordOfMinimumOf1Numeric = validatePasswordOfAtLeast1NumericInPassword(password);
-                if (passwordOfMinimumOf1Numeric) {
-                    return validatePasswordOfExact1SpecialCharacterInPassword(password);
-                }
-            }
-            else
-                return false;
-        }
-        else
-            return false;
-        return true;
+        if (passwordLength && validatePasswordOfAtLeast1UpperCase(password) && validatePasswordOfAtLeast1NumericInPassword(password) && validatePasswordOfExact1SpecialCharacterInPassword(password)) //{
+            return true;
+        return false;
     }
 }
